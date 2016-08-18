@@ -7,10 +7,10 @@ self.addEventListener('push', function(event) {
   // 動的にユーザーごとにメッセージを変えたい場合は、
   // ペイロードの暗号化を行うか、FetchAPIで動的に情報を取得する必要があります。
   var title = '新着記事のお知らせです';
-  var body = 'ServiceWorkerの記事を公開しました';
+  var body = 'テスト固定メッセージが表示されるはず';
   var icon = 'ics_logo_512x512.png';
   var tag = 'simple-push-demo-notification-tag';
-  var url = 'https://ics.media/entry/11763';
+  var url = 'https://webnewtype.com/';
 
   event.waitUntil(
     self.registration.showNotification(title, {
