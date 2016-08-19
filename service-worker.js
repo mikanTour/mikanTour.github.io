@@ -34,7 +34,9 @@ self.addEventListener('push', function(event) {
           body: data.body,
           icon: data.image,
           data: {
-            url: data.url
+            url: data.url,
+            button1_url:data.button1_url,
+            button2_url:data.button2_url
           },
           tag: data.tag,
           actions: [
@@ -58,10 +60,10 @@ self.addEventListener('notificationclick', function(event) {
     notoficationURL = event.notification.data.url
   }
   if (event.action === 'action1') {
-    notoficationURL = data.button1_url;
+    notoficationURL = event.notification.data.button1_url;
   }
   if (event.action === 'action2') {
-    notoficationURL = data.button2_url;
+    notoficationURL = event.notification.data.button2_url;
   }
 
 
