@@ -12,6 +12,7 @@ var pushButton = document.querySelector('#pushEnableButton');
 /**
  * 初期化処理を行います。
  */
+//ServiceWorkerのインストールを実施後の処理
 function initialize() {
   // プッシュ通知に対応しているかの判定
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
@@ -32,10 +33,10 @@ function initialize() {
     return;
   }
 
+  // ServiceWorkerのインストールが成功したっぽい。
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     // 登録されているsubscriptionを取得します。
-    serviceWorkerRegistration.pushManager.getSubscription()
-        .then(function(subscription) {
+    serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
 
           pushButton.disabled = false;
 
@@ -51,7 +52,7 @@ function initialize() {
           console.log('Error during getSubscription()', err);
         });
   });
-  
+
   // cURLコマンドの領域をクリックしたらコマンドを全選択する
   curlCommandArea.addEventListener('click', function() {
     selectCurlText();
@@ -144,7 +145,7 @@ function showCurlCommand(mergedEndpoint) {
       ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]}"';
 
   curlCommandArea.textContent = curlCommand;
-  
+
   // コマンドを選択状態にする
   selectCurlText();
 }
@@ -164,6 +165,7 @@ function endpointWorkaround(pushSubscription) {
 }
 
 window.addEventListener('load', function() {
+  // ONとOFFのイベントリスナー
   pushButton.addEventListener('click', function() {
     if (!pushButton.checked) {
       unsubscribe();
@@ -174,12 +176,15 @@ window.addEventListener('load', function() {
 
   // ServiceWokerをサポートしているかチェック
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js')
-    .then(initialize);
+    // Service Worker をインストールし、うまくいった場合はinitializeへ
+    // ServiceWorkerはインストール対象のディレクトリ以外では働かないことに注意
+    // 例）/test/service-worker.jsの場合は/test/以下のfetchイベントを受け取る
+    navigator.serviceWorker.register('./service-worker.js').then(initialize);
   } else {
     showUnsupported();
   }
 });
+
 
 
 /**
