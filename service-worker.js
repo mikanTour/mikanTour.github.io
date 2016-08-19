@@ -2,7 +2,7 @@
 
 // pushイベントのリスナーを用意。
 self.addEventListener('push', function(event) {
-  console.log('Received a push message', event);
+  // console.log('Received a push message', event);
 
   // サンプルでは固定のメッセージを通知するようにしています。
   // 動的にユーザーごとにメッセージを変えたい場合は、
@@ -32,7 +32,7 @@ self.addEventListener('push', function(event) {
       res.json().then(function(data){
         self.registration.showNotification(data.title, {
           body: data.body,
-          icon: data.image_path,
+          icon: data.image,
           data: {
             url: data.url
           },
