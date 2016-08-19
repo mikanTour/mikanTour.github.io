@@ -3,5 +3,9 @@
     "image": "thumbnail.jpg",
     "title": "新着ニュースが届いたかも！",
     "url":"https://webnewtype.com/news/article/84702/",
-    "tag":"why_tag"
+    "tag":"why_tag",
+    "button1_label":"コスプレTOP",
+    "button1_url":"https://webnewtype.com/tag/cosplay/",
+    "button2_label":"webnewtype TOP",
+    "button2_url":"https://webnewtype.com/"
 }

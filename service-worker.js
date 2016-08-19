@@ -38,8 +38,8 @@ self.addEventListener('push', function(event) {
           },
           tag: data.tag,
           actions: [
-            {action: 'action1', title: "ぼたん１"},
-            {action: 'action2', title: "ぼたん２"}
+            {action: 'action1', title: data.button1_label},
+            {action: 'action2', title: data.button2_label}
           ]
         });
       });
@@ -57,6 +57,14 @@ self.addEventListener('notificationclick', function(event) {
   if (event.notification.data.url) {
     notoficationURL = event.notification.data.url
   }
+  if (event.action === 'action1') {
+    notoficationURL = data.button1_url;
+  }
+  if (event.action === 'action2') {
+    notoficationURL = data.button2_url;
+  }
+
+
 
   event.waitUntil(clients.matchAll({
     type: 'window'
