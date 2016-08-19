@@ -8,7 +8,8 @@ self.addEventListener('push', function(event) {
   // ペイロードの暗号化を行うか、FetchAPIで動的に情報を取得する必要があります。
   var title = '新着記事のお知らせです';
   var body = 'テスト固定メッセージが表示されるはず';
-  var icon = 'ics_logo_512x512.png';
+  var icon = 'logo.jpg';
+
   var tag = 'simple-push-demo-notification-tag';
   var url = 'https://webnewtype.com/';
 
@@ -26,13 +27,14 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
+  alert('hogehoge');
   event.notification.close();
 
  var notoficationURL = "/"
   if (event.notification.data.url) {
     notoficationURL = event.notification.data.url
   }
-  
+
   event.waitUntil(clients.matchAll({
     type: 'window'
   }).then(function(clientList) {
