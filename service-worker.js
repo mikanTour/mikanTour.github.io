@@ -35,7 +35,12 @@ self.addEventListener('push', function(event) {
           icon: data.image_path,
           data: {
             url: data.url
-          }
+          },
+          tag: data.tag,
+          actions: [
+            {action: 'action1', title: "ぼたん１"},
+            {action: 'action2', title: "ぼたん２"}
+          ]
         });
       });
     })
