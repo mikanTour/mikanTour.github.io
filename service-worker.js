@@ -27,7 +27,6 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
-  alert('hogehoge');
   event.notification.close();
 
  var notoficationURL = "/"
